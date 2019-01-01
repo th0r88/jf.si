@@ -3,15 +3,13 @@ layout: post
 title: Why it is so important to back up your data
 ---
 
-# Why it is so important to back up your data
-
 During the four years I worked as a repair technician for iPhones and MacBooks, I heard lots of apologies and stories from people who brought their completely destroyed iPhones for repair on how they accidentally damaged the device.
 
 Initially, I thought they were apologizing to me but I later realized that they were not apologizing to me but to themselves. About 90% of clients I asked about backing up their iPhone indicated that they never backed up their device in recent months. You can ponder about that. We\'re currently living in an era where we have most of our data stored on our phones, which are really fragile and not waterproof (talking about 2007 - 2016 models of iPhones) from my experience.
 
 Most people do not, however, consider what could happen to their data if their phones get stolen or irreparably damaged. Hence, I started a mission to enlighten my clients on the importance of backing up their data so they can easily retrieve them when their device is stolen, misplaced or accidentally damaged.
 
-![Back up](images/jessy-smith-534048-unsplash.jpg)
+![Back up](https://jf.si/images/jessy-smith-534048-unsplash.jpg)
 
 <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@jessysmith?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Jessy Smith"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Jessy Smith</span></a>
 
