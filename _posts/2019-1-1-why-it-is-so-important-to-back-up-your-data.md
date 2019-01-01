@@ -15,7 +15,7 @@ Most people do not, however, consider what could happen to their data if their p
 
 ## Portable iOS devices (iPhones, iPads and iPods)
 
-Nowadays, most iPhones and iPads come with a storage capacity ranging **from 32 to 256 GB** (512GB incoming). I always recommend the use of iCloud, which I believe is the simplest method, for backing up these devices. All iCloud users automatically get free **5 GB of storage** but you can\'t actually back up a lot of content with such limited storage space.
+Nowadays, most iPhones and iPads come with a storage capacity ranging **from 32 to 512 GB**. I always recommend the use of iCloud, which I believe is the simplest method, for backing up these devices. All iCloud users automatically get free **5 GB of storage** but you can\'t actually back up a lot of content with such limited storage space.
 
 ### iCloud backup
 
