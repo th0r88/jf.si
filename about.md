@@ -6,7 +6,7 @@ permalink: /about/
 
 - QA Engineer at Bitstamp, 
 - Podcaster at Apgrejd, 
-- Video Gamer
+- Gamer (PC, Switch, PS4)
 - Hobby Repair technician, 
 - ...
 
