@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-- QA Engineer at Bitstamp, 
+- QA Engineer at tretton37, 
 - Podcaster at Apgrejd, 
 - Gamer (PC, Switch, PS4)
 - Hobby Repair technician, 
