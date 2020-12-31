@@ -1,4 +1,7 @@
-#Beginning of a homelab
+---
+layout: post
+title: Beginning of a homelab
+---
 
 It all started when my friend E. introduced me to the subreddit [Homelab](https://www.reddit.com/r/homelab/). Coincidentally was this on the 1st of April when we're quite hopeful that the whole 2020 situation will go away soon. I started reading all the subreddit's posts and was hooked. 
 
