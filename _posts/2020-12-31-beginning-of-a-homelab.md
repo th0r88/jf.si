@@ -3,7 +3,7 @@ layout: post
 title: Beginning of a homelab
 ---
 
-It all started when my friend E. introduced me to the subreddit [Homelab](https://www.reddit.com/r/homelab/). Coincidentally was this on the 1st of April when we're quite hopeful that the whole 2020 situation will go away soon. I started reading all the subreddit's posts and was hooked. 
+It all started when my friend E. introduced me to the subreddit [Homelab](https://www.reddit.com/r/homelab/). Coincidentally this was on the 1st of April when we're quite hopeful that the whole 2020 situation will go away soon. I started reading all the subreddit's posts and was hooked. 
 
 The main reason to build a homelab was to replace my weak Synology 216play and to extend my storage, my computing power, and learn more about hypervisors, container systems, etc. Did I achieve that? Let's find out.
 
