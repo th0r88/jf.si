@@ -45,7 +45,7 @@ A lot of thought went into choosing the right equipment for my needs. Did I over
 
 ### Router
 
-I knew I wanted to install [pfsense](https://www.pfsense.org/) on my router because I read how powerful and stable router OS it is. And that's why I had to find proper hardware for it. It can generally run on any x85 processor but if you want to have a bit higher bandwidth, firewall, and VPN throughput you need to choose a bit better hardware. 
+I knew I wanted to install [pfsense](https://www.pfsense.org/) on my router because I read how powerful and stable router OS it is. And that's why I had to find proper hardware for it. It can generally run on any x86 processor but if you want to have a bit higher bandwidth, firewall, and VPN throughput you need to choose a bit better hardware. 
 
 My router consists of:
 
@@ -100,7 +100,7 @@ The second server is meant for a playground. On it I run [Proxmox](https://www.p
 
 Specifications:
 
-- Processor: 1x 2430L v2 2.40Ghz Hexa (6) Core CPU*
+- Processor: 1x Intel Xeon E5-2430L v2 2.40Ghz Hexa (6) Core CPU*
 - Memory (RAM): 64 GB DDR3 1600 Mhz
 - Hard Drives: 1x 120GB SSD, 1x 240GB SSD*
 - Power Supplies: 2x Dell 350W
