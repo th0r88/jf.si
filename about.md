@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-- Global IS/IT Manager at tretton37, 
+- QA Engineer, 
 - Podcaster at Apgrejd, 
 - Gamer (PC, Switch, PS4)
 - Hobby Repair technician, 
