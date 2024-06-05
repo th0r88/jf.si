@@ -5,7 +5,6 @@ permalink: /about/
 ---
 
 - QA Engineer, 
-- Podcaster at Apgrejd, 
 - Gamer (PC, Switch, PS4)
 - Hobby Repair technician, 
 - ...
