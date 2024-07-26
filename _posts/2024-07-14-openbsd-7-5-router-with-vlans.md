@@ -65,9 +65,10 @@ _This is my first configuration for an OpenBSD-based router. Mistakes are expect
 
 ### 1. [Install OpenBSD](https://www.openbsdhandbook.com/installation/) to your hardware of choice. I suggest skipping installing the following sets (not needed for router and firewall): 
 
-```[X] bsd           [ ] comp7X.tgz    [ ] xbase7X.tgz   [ ] xserv7X.tgz
-    [X] bsd.rd        [X] man7X.tgz     [ ] xshare7X.tgz
-    [X] base7X.tgz    [ ] game7X.tgz    [ ] xfont7X.tgz
+```
+[X] bsd           [ ] comp7X.tgz    [ ] xbase7X.tgz   [ ] xserv7X.tgz
+[X] bsd.rd        [X] man7X.tgz     [ ] xshare7X.tgz
+[X] base7X.tgz    [ ] game7X.tgz    [ ] xfont7X.tgz
 ```
 
 ### 2.  Configure network interfaces
