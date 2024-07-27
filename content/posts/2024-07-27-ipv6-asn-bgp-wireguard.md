@@ -1,5 +1,5 @@
 ---
-title: IPv6 - How to start (ASN, BGP,...)
+title: IPv6 - How to start (ASN, BGP, Wireguard tunnel,...)
 date: 2024-07-27
 draft: false
 ---
