@@ -22,13 +22,13 @@ I had no idea what ASN was and how to get it. Fortunately, I found a great [blog
 
 I chose to find an LIR that offers an ASN + IPv6 (PA) bundle. I used Scaleblade (RIPE-02 bundle) but there are others.
 
-#### LIRs willing to sponsor your ASN:
+**LIRs willing to sponsor your ASN:**
 
 - [Scaleblade](https://scaleblade.com/products/lir)
 - [iFog](https://ifog.ch/en/ip/lir-services)
 - [FreeTransit](https://freetransit.ch/)
 
-#### After you choose your LIR for sponsorship you need to:
+**After you choose your LIR for sponsorship you need to:**
 
 1. [Register RIPE NCC Access account](https://access.ripe.net/registration).
 2. Create the next objects in the RIPE database: "role and maintainer pair" and "organisation". I followed a [guide from FreeTransit](https://freetransit.ch/freetransit_ripe-objects-for-ASN-and-PA.pdf).
@@ -38,7 +38,7 @@ I chose to find an LIR that offers an ASN + IPv6 (PA) bundle. I used Scaleblade 
 
 So right now it's gonna cost me cca 90€/year to have my IPv6 /44 range and ASN. Again not really great but also not terrible. I consider myself an early adopter although at a 45% IPv6 adoption rate I wouldn't say I am anymore.
 
-#### Next steps
+**Next steps**
 
 Once you get your PA (Provider Aggregatable) IPv6 addresses allocated the real fun starts. Just getting the IPv6 range itself means nothing. You'll need to get yourself familiar with the RIPE database to add `route6`, `inet6num` and other objects to it.
 
