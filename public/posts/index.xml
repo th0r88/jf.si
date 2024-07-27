@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Jan Ferme&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IPv6 - How to start (ASN, BGP, Wireguard tunnel,...)</title>
+      <link>http://localhost:1313/posts/2024-07-27-ipv6-asn-bgp-wireguard/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2024-07-27-ipv6-asn-bgp-wireguard/</guid>
+      <description>I&amp;rsquo;ve been hearing for the last 15 years that IPv6 is the future. Is it though? Google tracks it and it seems we came a long way since pre-2010 and we&amp;rsquo;re currently sitting at 45%. Not bad, not great.&#xA;I&amp;rsquo;ve been running pfsense for the last 4 years and at the beginning of the year I decided it was time to finally set it up on the home network. I looked at my options and remembered that my ISP could allocate me an IPv6 range.</description>
+    </item>
     <item>
       <title>OpenBSD 7.5 router with VLANs</title>
       <link>http://localhost:1313/posts/2024-07-14-openbsd-7-5-router-with-vlans/</link>

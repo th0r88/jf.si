@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="">
+    <script defer data-domain="jf.si" src="https://stats.jf.si/js/script.js"></script>
+
+    
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
+    
+
+    <title>
+      
+      
+         IPv6 - How to start (ASN, BGP, Wireguard tunnel,...) 
+      
+    </title>
+    <link rel="canonical" href="http://localhost:1313/posts/2024-07-27-ipv6-asn-bgp-wireguard/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-justify { float: left; }
+  .right-justify { float:right; }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, .date {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content .date {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
+  #links :nth-child(2) {
+    margin-left:0.5em;;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    *, #nav h1 a {
+      color: #FDFDFD;
+    }
+
+    body {
+      background: #121212;
+    }
+
+    pre, code {
+      background-color: #262626;
+    }
+
+    #sub-header, .date {
+      color: #BABABA;
+    }
+
+    hr {
+      background: #EBEBEB;
+    }
+  }
+</style>
+
+
+    </head>
+
+  <body>
+    <section id=nav>
+      <h1><a class="h-card" href="http://localhost:1313/">Jan Ferme&#39;s blog</a></h1>
+      <ul>
+        
+          <li><a href="http://localhost:1313/">Home</a></li>
+        
+          <li><a href="http://localhost:1313/about/">About</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> IPv6 - How to start (ASN, BGP, Wireguard tunnel,...) </h1>
+
+  
+    <div id=sub-header>
+      July 2024 · 12 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <p>I&rsquo;ve been hearing for the last 15 years that <a href="https://en.wikipedia.org/wiki/IPv6">IPv6</a> is the future. Is it though? Google <a href="https://www.google.com/intl/en/ipv6/statistics.html">tracks it</a> and it seems we came a long way since pre-2010 and we&rsquo;re currently sitting at 45%. Not bad, not great.</p>
+<p><img src="http://localhost:1313/images/ipv6_adoption.png" alt="IPv6 Adoption"></p>
+<p>I&rsquo;ve been running pfsense for the last 4 years and at the beginning of the year I decided it was time to finally set it up on the home network. I looked at my options and remembered that my ISP could allocate me an IPv6 range. I wrote to them and explained my case, they were happy to accommodate me and assigned me a dynamic IPv6 /56 range.</p>
+<p>That was not the worst part. I could live with a dynamic IPv6 but ping to Cloudflare&rsquo;s DNS servers was consistently over 300 ms and the website took ages to load. That was clearly unacceptable so I started researching how to get my IPv6 range.</p>
+<h2 id="asn-registration-and-getting-ipv6-allocation">ASN registration and getting IPv6 allocation</h2>
+<p>I had no idea what ASN was and how to get it. Fortunately, I found a great <a href="https://quantum5.ca/2023/10/10/what-i-wish-i-knew-when-i-got-my-asn/">blog post</a> that explains it in detail. The <a href="https://quantum5.ca/category/bgp/">whole series</a> is worth the read if you&rsquo;re going down the rabbit hole of IPv6. I chose RIPE as my RIR because it&rsquo;s European (although they recently started charging 50€/year for an ASN).</p>
+<h3 id="how-to-get-asn">How to get ASN</h3>
+<p>I chose to find an LIR that offers an ASN + IPv6 (PA) bundle. I used Scaleblade (RIPE-02 bundle) but there are others.</p>
+<p><strong>LIRs willing to sponsor your ASN:</strong></p>
+<ul>
+<li><a href="https://scaleblade.com/products/lir">Scaleblade</a></li>
+<li><a href="https://ifog.ch/en/ip/lir-services">iFog</a></li>
+<li><a href="https://freetransit.ch/">FreeTransit</a></li>
+</ul>
+<p><strong>After you choose your LIR for sponsorship you need to:</strong></p>
+<ol>
+<li><a href="https://access.ripe.net/registration">Register RIPE NCC Access account</a>.</li>
+<li>Create the next objects in the RIPE database: &ldquo;role and maintainer pair&rdquo; and &ldquo;organisation&rdquo;. I followed a <a href="https://freetransit.ch/freetransit_ripe-objects-for-ASN-and-PA.pdf">guide from FreeTransit</a>.</li>
+<li>Send the chosen LIR all information from the above objects and sign an agreement with them.</li>
+<li>LIR sends you an identity verification link from RIPE - complete verification</li>
+<li>RIPE issues your ASN</li>
+</ol>
+<p>So right now it&rsquo;s gonna cost me cca 90€/year to have my IPv6 /44 range and ASN. Again not really great but also not terrible. I consider myself an early adopter although at a 45% IPv6 adoption rate I wouldn&rsquo;t say I am anymore.</p>
+<p><strong>Next steps</strong></p>
+<p>Once you get your PA (Provider Aggregatable) IPv6 addresses allocated the real fun starts. Just getting the IPv6 range itself means nothing. You&rsquo;ll need to get yourself familiar with the RIPE database to add <code>route6</code>, <code>inet6num</code> and other objects to it.</p>
+<p>I got an allocation of IPv6 /44 block.</p>
+<p><code>2a12:bec4:1040::/44</code></p>
+<p>Why can&rsquo;t I use a /44 prefix? /48 is typically considered the largest subnet (or smallest prefix) for global routing in IPv6. This is an important concept in IPv6 addressing and routing strategy. I have 16 available /48 for global routing (<a href="https://www.site24x7.com/tools/ipv6-subnetcalculator.html">IPv6 Subnet Calculator</a>).</p>
+<pre tabindex="0"><code>1. 2a12:bec4:1040::/48
+
+[...]
+
+16. 2a12:bec4:104f::/48
+</code></pre><p>Now I have to go to <a href="https://my.ripe.net">My Ripe</a> add a <code>route6</code> object declare my intention to route this prefix and provide a mechanism for others to verify that I&rsquo;m the authorized holder of this address space.</p>
+<p><img src="http://localhost:1313/images/route6.png" alt="route6"></p>
+<p>The next step is to go to your LIR website (I chose Scaleblade and they support this) to add an ROA (Route Origin Authorization) which is a cryptographically signed object that states which Autonomous System (AS) is authorized to originate a particular IP address prefix or range.</p>
+<p><img src="http://localhost:1313/images/roa.png" alt="ROA"></p>
+<p>ROAs are a key component of RPKI (Resource Public Key Infrastructure), which is designed to improve the security of the Internet&rsquo;s routing infrastructure, particularly BGP (Border Gateway Protocol). ROA adds an additional layer of security to your routing announcements, complementing the route6 object you&rsquo;ve already created in the RIPE database.</p>
+<h2 id="announce-your-prefix-to-the-world-buyvmfrantech">Announce your prefix to the world (BuyVM/Frantech)</h2>
+<p>After creating a route6 object and an ROA, the next logical step in establishing my IPv6 presence is to announce your prefix to the Internet. I&rsquo;d say a &ldquo;logical step&rdquo; but believe me I was chasing my own tail until I figured that one out. I really recommend <a href="https://discord.gg/ipv6">IPv6 networking discord</a> which can point you in the right direction.</p>
+<p>After a while, I found what I thought was the easiest solution and that&rsquo;s to find a VPS provider that offers BGP sessions. Here are some of the providers I found:</p>
+<ul>
+<li><a href="https://my.frantech.ca/aff.php?aff=7453">BuyVM/Frantech</a> (aff link to help me with my hobby)</li>
+<li><a href="https://my.ifog.ch/order/forms/">iFog</a></li>
+<li><a href="https://www.vultr.com/products/cloud-compute/">Vultr</a></li>
+<li><a href="https://xenyth.net/products/vps-hosting/">Xenyth</a></li>
+</ul>
+<p>In the end, I chose BuyVM/Frantech and I&rsquo;ll focus on how to configure the BGP session with them and announce my prefix (Luxembourg location). One of the important factors why I chose them was unmetered bandwith.</p>
+<h3 id="bgp-session">BGP session</h3>
+<ol>
+<li>Select one of their VPS options (I went for the SLICE 1024) and install Debian 12</li>
+<li>Open a ticket with them and request a BGP peering providing your ASN.</li>
+<li>All your RPKI-signed IP prefixes will import automatically within an hour.</li>
+<li>On Stallion go to Your server -&gt; Networking -&gt; IPv6 and assign your server an IPv6 (confirm on a server that your new IPv6 is resolving otherwise add it manually)</li>
+<li>Then go to Your server -&gt; Networking -&gt; BGP -&gt; Configure Session and select your server&rsquo;s IPv4, IPv6, Connection mode, and BGP Table View (see my screenshot) and save:</li>
+</ol>
+<p><img src="http://localhost:1313/images/bgp_session.png" alt="BGP Session"></p>
+<h3 id="bird">Bird</h3>
+<p>Now we&rsquo;ll use <a href="https://bird.network.cz/">BIRD</a> Internet Routing Daemon to establish a BGP session with BuyVM/Frantech peer. BIRD will primarily handle the BGP session with my VPS provider, announce my IPv6 prefix, and manage the routing decisions for my server. It acts as the interface between my server&rsquo;s network stack and the broader Internet routing ecosystem.</p>
+<p><strong>These instructions are for Debian 12:</strong></p>
+<pre tabindex="0"><code>sudo apt-get update
+sudo apt-get install bird
+</code></pre><p><strong>Now edit:</strong></p>
+<p><code>/etc/bird/bird.conf</code></p>
+<p>My configuration looks like this and I must admit it took me a while to actually get it working. I was overwhelmed with BGP sessions and IPv6 prefixes so another complex thing just takes a bit longer to get it right.</p>
+<pre tabindex="0"><code>log syslog all;
+
+router id 107.189.xxx.xxx; # Your VPS IPv4
+
+protocol device { scan time 5; }
+
+protocol direct {
+    ipv6 {
+        import none;
+        export none;
+    };
+}
+
+protocol kernel {
+    scan time 2;
+    ipv6 {
+        import all;
+        export filter {
+            accept;
+        };
+    };
+}
+
+
+protocol static noAnnounce {
+    ipv6;
+    route 2605:6400:ffff::2/128 via 2605:6400:30::1%eth0; # Route to ftv6 bgp router
+}
+
+protocol static {
+    ipv6;
+    route 2a12:bec4:1040::/48 via &#34;wg0&#34;; # Wireguard
+    route 2a12:bec4:1041::/48 reject;    # Ready prefix for some other time
+    route 2a12:bec4:1042::/48 reject;    # Ready prefix for some other time
+}
+
+filter ebgp_outbound {
+    if proto = &#34;noAnnounce&#34; then reject; # Do not announce local routes
+    if (net ~ [ 2a12:bec4:1040::/48,2a12:bec4:1041::/48,2a12:bec4:1042::/48 ]) then accept;
+    else reject;
+}
+
+protocol bgp FranTech_V6 {
+
+    local 2605:6400:30::xxxx as 215472; # IPv6 assigned to your IPv6
+    neighbor 2605:6400:ffff::2 as 53667;
+    multihop 2;
+    password &#34;XXXXXXXX&#34;; # You need to find this password in your Stallion dashboard
+    allow local as XXXXXX; # Your ASN
+    ipv6 {
+        import all;
+        export filter ebgp_outbound;
+    };
+}
+</code></pre><p><strong>Enable IPv6 forwarding:</strong></p>
+<p><code>sudo sysctl -w net.ipv6.conf.all.forwarding=1</code></p>
+<p>To make this permanent, add <code>net.ipv6.conf.all.forwarding=1</code> to <code>/etc/sysctl.conf</code>.</p>
+<p><strong>Start the BIRD service:</strong></p>
+<p><code>sudo systemctl start bird</code></p>
+<p><strong>Enable it to start on boot:</strong></p>
+<p><code>sudo systemctl enable bird</code></p>
+<p><strong>Verify BIRD operation and status:</strong></p>
+<p><code>sudo birdc show protocols all</code></p>
+<p><strong>It should show &ldquo;Established&rdquo;:</strong></p>
+<p><img src="http://localhost:1313/images/bird_status.png" alt="Bird Status"></p>
+<h3 id="wireguard-setup">Wireguard setup</h3>
+<p>Now let&rsquo;s setup Wireguard server so we can later use it as VPN tunnel to our pfsense router.</p>
+<p><strong>Install Wireguard package:</strong></p>
+<pre tabindex="0"><code>sudo apt update
+sudo apt install wireguard
+</code></pre><p><strong>Generate private and public keys</strong></p>
+<pre tabindex="0"><code>wg genkey | sudo tee /etc/wireguard/private.key
+sudo chmod go= /etc/wireguard/private.key
+sudo cat /etc/wireguard/private.key | wg pubkey | sudo tee /etc/wireguard/public.key
+</code></pre><p><strong>Edit:</strong></p>
+<p><code>/etc/wireguard/wg0.conf</code></p>
+<p>My config that works:</p>
+<pre tabindex="0"><code>[Interface]
+PrivateKey = &lt;server_private_key&gt;
+Address = 10.8.0.1/24, 2a12:your:range:1040:ffff::2/64
+DNS = 1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001
+ListenPort = 51820
+PostUp = ip6tables -A FORWARD -i %i -j ACCEPT; ip6tables -A FORWARD -o %i -j ACCEPT; ip6tables -t nat -A POSTROUTING -s 2a12:your:range::/64 -o eth0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -s 2a12:your:range::/64 ! -o wg0 -j MASQUERADE
+PostDown = ip6tables -D FORWARD -i %i -j ACCEPT; ip6tables -D FORWARD -o %i -j ACCEPT; ip6tables -t nat -D POSTROUTING -s 2a12:your:range::/64 -o eth0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -s 2a12:your:range::/64 ! -o wg0 -j MASQUERADE
+</code></pre><p><strong>Enable and start WireGuard:</strong></p>
+<pre tabindex="0"><code>sudo systemctl enable wg-quick@wg0
+sudo systemctl start wg-quick@wg0
+</code></pre><p><strong>Check status:</strong></p>
+<p><code>sudo wg show</code></p>
+<p><strong>Add a peer (client) to your WireGuard server:</strong></p>
+<pre tabindex="0"><code>wg genkey | tee client_private.key
+cat client_private.key | wg pubkey &gt; client_public.key
+</code></pre><p><strong>Add the peer to your server configuration:</strong></p>
+<pre tabindex="0"><code>sudo wg set wg0 peer &lt;client_public_key&gt; allowed-ips 2a12:your:range::/48
+</code></pre><p><strong>Create a client configuration file:</strong></p>
+<pre tabindex="0"><code>[Interface]
+PrivateKey = &lt;client_private_key&gt;
+Address = 10.8.0.2/32, 2a12:your:range:ffff::3/128 
+DNS = 1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001
+
+[Peer]
+PublicKey = &lt;server_public_key&gt;
+Endpoint = &lt;server_public_ip&gt;:51820
+AllowedIPs = 0.0.0.0/0, ::/0
+</code></pre><p><strong>Example of my completed config with a test client:</strong></p>
+<pre tabindex="0"><code>[Interface]
+PrivateKey = &lt;server_private_key&gt;
+Address = 10.8.0.1/24, 2a12:your:range:ffff::2/64
+DNS = 1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001
+ListenPort = 51820
+PostUp = ip6tables -A FORWARD -i %i -j ACCEPT; ip6tables -A FORWARD -o %i -j ACCEPT; ip6tables -t nat -A POSTROUTING -s 2a12:your:range::/64 -o eth0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -s 2a12:your:range::/64 ! -o wg0 -j MASQUERADE
+PostDown = ip6tables -D FORWARD -i %i -j ACCEPT; ip6tables -D FORWARD -o %i -j ACCEPT; ip6tables -t nat -D POSTROUTING -s 2a12:your:range::/64 -o eth0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -s 2a12:your:range::/64 ! -o wg0 -j MASQUERADE
+
+#jan-test
+[Peer]
+PublicKey = &lt;peer_public_key&gt;
+AllowedIPs = 10.8.0.2/32, 2a12:your:range:ffff::3/128
+PersistentKeepalive = 25
+
+#your-pfsense-router
+[Peer]
+PublicKey = &lt;peer_public_key&gt;
+AllowedIPs = 2a12:your:range::/48
+PersistentKeepalive = 25
+</code></pre><h2 id="wireguard-tunnel-to-pfsense">Wireguard tunnel to pfsense</h2>
+<p>Great our Wireguard server is set up but how do we get our IPv6 prefix home? By creating a Wireguard tunnel of course! I&rsquo;ll be assuming your home network is segregated with VLANs.</p>
+<h3 id="in-pfsense-install-a-wireguard-package">In pfsense install a WireGuard package:</h3>
+<ul>
+<li>System &gt; Package Manager &gt; Available Packages</li>
+<li>Search for &ldquo;WireGuard&rdquo; and install</li>
+</ul>
+<h3 id="create-wireguard-tunnel">Create WireGuard tunnel:</h3>
+<ul>
+<li>VPN &gt; WireGuard &gt; Add Tunnel</li>
+<li>Check Enable Tunnel</li>
+<li>Set Description (e.g., &ldquo;WireGuard to VPS&rdquo;)</li>
+<li>Generate a key pair (Private and Public key)</li>
+<li>Set Listen Port (e.g., 51821)</li>
+<li>Set Tunnel Address: 2a12:your:range:1040:ffff::2/64 (copy from wg0.conf on VPS or peer configuration)</li>
+</ul>
+<p><img src="http://localhost:1313/images/wireguard_tunnel.png" alt="Add Wireguard Tunnel"></p>
+<h3 id="create-wireguard-interface">Create Wireguard interface:</h3>
+<ul>
+<li>Interfaces &gt; Assignments &gt; Available network ports &gt; Choose the tunnel interface you just created (for example: tun_wg0)</li>
+<li>Check Enable interface</li>
+<li>Enter Description (for example WG_VPS)</li>
+<li>IPv4 Configuration Type &gt; None</li>
+<li>IPv6 Configuration Type &gt; Static IPv6</li>
+<li>Static IPv6 Configuration &gt; IPv6 address &gt; 2a12:your:range:1040:ffff::1/64</li>
+<li>IPv6 Upstream gateway &gt; Add a new gateway &gt; Gateway name (WG_VPS), Gateway IPv6 (2a12:your:range:ffff::2) &lt; Wireguard server&rsquo;s IPv6; click Add</li>
+<li>Save</li>
+</ul>
+<h3 id="create-a-peer">Create a peer</h3>
+<ul>
+<li>VPN &gt; WireGuard &gt; Peers &gt; Add Peer:
+<ul>
+<li>Enable &gt; ✅ Enable Peer</li>
+<li>Tunnel &gt; Select tunnel to your VPS</li>
+<li>Description &gt; VPS peer <em>(or whatever you want)</em></li>
+<li>Endpoint &gt; <em>IPv4 or IPv6 VPS IP</em></li>
+<li>Port &gt; 51820 <em>(from VPS Wireguard conf wg0.conf)</em></li>
+<li>Keep Alive &gt; 25</li>
+<li>Public Key &gt; <em>VPS Server Wireguard Public Key</em></li>
+<li>Allowed IPs &gt; 2a12:your:range::/48 <em>(Enter the whole range if you want segreggate it further)</em></li>
+<li>Allowed IPs &gt; ::/0</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://localhost:1313/images/wireguard_peers.png" alt="Add Wireguard Peer"></p>
+<h3 id="update-peer-configuration-on-vps">Update peer configuration on VPS:</h3>
+<p>in <code>/etc/wireguard/wg0.conf</code> modify or add:</p>
+<pre tabindex="0"><code>#your-pfsense-router
+[Peer]
+PublicKey = &lt;pfsense_public_key&gt;
+AllowedIPs = 2a12:your:range::/48
+PersistentKeepalive = 25
+</code></pre><h3 id="check-wireguard-status">Check Wireguard status:</h3>
+<p>A green handshake means it&rsquo;s successfully connected:</p>
+<p><img src="http://localhost:1313/images/wireguard_status.png" alt="Wireguard Status"></p>
+<h3 id="configure-routing">Configure routing:</h3>
+<p>First, we add a gateway:</p>
+<ul>
+<li>System &gt; Routing &gt; Gateways &gt; Add:
+<ul>
+<li>Interface &gt; WG_VPS</li>
+<li>Address Family &gt; IPv6</li>
+<li>Name &gt; WG_VPS</li>
+<li>Gateway &gt; 2a12:your:range:1040:ffff::2/64 (VPS Wireguard address)</li>
+<li>Monitor IP &gt; 2606:4700:4700::1001</li>
+<li>Description &gt; WG_VPS</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://localhost:1313/images/gateway.png" alt="Gateways"></p>
+<p>Second, we add 2 static routes:</p>
+<ul>
+<li>
+<p>System &gt; Routing &gt; Static Routes &gt; Add 1st:</p>
+<ul>
+<li>Destination network &gt; ::/1</li>
+<li>Gateway &gt; WG_VPS (2a12:your:range:1040:ffff::2)</li>
+</ul>
+</li>
+<li>
+<p>System &gt; Routing &gt; Static Routes &gt; Add 2nd:</p>
+<ul>
+<li>Destination network &gt; 8000::/1</li>
+<li>Gateway &gt; WG_VPS (2a12:your:range:1040:ffff::2)</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://localhost:1313/images/static_routes.png" alt="Static Routes"></p>
+<h2 id="configuring-static-ipv6">Configuring static IPv6</h2>
+<p>Let&rsquo;s first configure a static IPv6 for servers, network devices, or any device that needs a constant address. My servers are on VLAN20 so I&rsquo;ll be using that as an example.</p>
+<h3 id="add-additional-configuration-to-an-existing-vlan">Add additional configuration to an existing VLAN:</h3>
+<ul>
+<li>Interfaces &gt; VLAN20:
+<ul>
+<li>IPv6 Configuration Type &gt; Static IPv6</li>
+<li>Static IPv6 Configuration:
+<ul>
+<li>IPv6 address &gt; 2a12:your:range:2::1/64 <em>(Select an IP from your range with a subnet 64)</em></li>
+</ul>
+</li>
+<li>Save</li>
+</ul>
+</li>
+</ul>
+<h3 id="configure-dhcpv6-server">Configure DHCPv6 Server:</h3>
+<ul>
+<li>Services &gt; DHCPv6 Server &gt; VLAN20:
+<ul>
+<li>Enable &gt; ✅ Enable DHCPv6 server on VLAN20 interface</li>
+<li>Primary Address Pool:
+<ul>
+<li>Address Pool Range &gt; From: 2a12:your:range:2::1000 to: 2a12:bec4:1040:2::2000</li>
+</ul>
+</li>
+<li>Server Options:
+<ul>
+<li>Enable DNS &gt; ✅ Provide DNS servers to DHCPv6 clients</li>
+<li>DNS Servers: <em>(I&rsquo;m using Cloudflare DNS servers)</em>
+<ul>
+<li>2606:4700:4700::1111</li>
+<li>2606:4700:4700::1001</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Save</li>
+</ul>
+</li>
+</ul>
+<h3 id="configure-router-advertisement">Configure Router Advertisement:</h3>
+<ul>
+<li>Services &gt; Router Advertisements &gt; VLAN20:
+<ul>
+<li>Router mode &gt; Managed</li>
+<li>Router Priority &gt; High</li>
+<li>RA Subnet(s) &gt; 2a12:your:range:2::/64</li>
+<li>Save</li>
+</ul>
+</li>
+</ul>
+<p><strong>Create firewall rules:</strong></p>
+<ul>
+<li>Firewall &gt; Rules &gt; WireGuard</li>
+<li>Add a rule to allow traffic from the WireGuard interface</li>
+</ul>
+<p><img src="http://localhost:1313/images/firewall_rule.png" alt="Firewall Rule"></p>
+<p><em>Adjust Firewall rules as needed for your network.</em></p>
+<h2 id="configuring-slaac-ipv6">Configuring SLAAC IPv6</h2>
+<p>For my wireless devices, I&rsquo;m using the SLAAC configuration. SLAAC (Stateless Address Autoconfiguration) is generally considered safer for several reasons:</p>
+<ol>
+<li>Privacy: SLAAC can use temporary addresses that change over time, making it harder to track a device across networks or sessions.</li>
+<li>Decentralized: Each device generates its own address, reducing the risk of a central point of failure or attack (like a compromised DHCP server).</li>
+<li>Reduced attack surface: Without a centralized addressing mechanism, there are fewer opportunities for attackers to manipulate address assignments.</li>
+<li>Automatic operation: Minimizes human intervention in address assignment, reducing the chance of configuration errors.</li>
+<li>Simplicity: Simpler systems often have fewer vulnerabilities.</li>
+</ol>
+<p>However, it&rsquo;s worth noting that SLAAC also has some potential drawbacks, such as less administrative control over address assignments. The best choice depends on specific network requirements and security policies.</p>
+<h3 id="add-additional-configuration-to-an-existing-vlan-1">Add additional configuration to an existing VLAN:</h3>
+<ul>
+<li>Interfaces &gt; VLAN95:
+<ul>
+<li>IPv6 Configuration Type &gt; Static IPv6</li>
+<li>Static IPv6 Configuration:
+<ul>
+<li>IPv6 address &gt; 2a12:your:range:9::1/64 <em>(Select an IP from your range with a subnet 64)</em></li>
+</ul>
+</li>
+<li>Save</li>
+</ul>
+</li>
+</ul>
+<p><em>Although we have a SLAAC option in the interface as well in this case we need to use a STatic IPv6 configuration otherwise we can&rsquo;t configure Router Advertisements later.</em></p>
+<h3 id="configure-dhcpv6-server-1">Configure DHCPv6 Server:</h3>
+<ul>
+<li>Services &gt; DHCPv6 Server &gt; VLAN20:
+<ul>
+<li>Enable &gt; ✅ Enable DHCPv6 server on VLAN95 interface</li>
+<li>Server Options:
+<ul>
+<li>Enable DNS &gt; ✅ Provide DNS servers to DHCPv6 clients</li>
+<li>DNS Servers: <em>(I&rsquo;m using Cloudflare DNS servers)</em>
+<ul>
+<li>2606:4700:4700::1111</li>
+<li>2606:4700:4700::1001</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Save</li>
+</ul>
+</li>
+</ul>
+<h3 id="configure-router-advertisement-1">Configure Router Advertisement:</h3>
+<ul>
+<li>Services &gt; Router Advertisements &gt; VLAN95:
+<ul>
+<li>Router mode &gt; Stateless DHCP</li>
+<li>Router Priority &gt; High</li>
+<li>RA Subnet(s) &gt; 2a12:your:range:9::/64</li>
+<li>Save</li>
+</ul>
+</li>
+</ul>
+<h3 id="create-firewall-rules">Create firewall rules:</h3>
+<ul>
+<li>Firewall &gt; Rules &gt; WireGuard</li>
+<li>Add a rule to allow traffic from the WireGuard interface</li>
+</ul>
+<p><img src="http://localhost:1313/images/firewall_rule.png" alt="Firewall Rule"></p>
+<p><em>Adjust Firewall rules as needed for your network.</em></p>
+<h3 id="connect-the-device-to-the-right-vlan-and-check-ipv6">Connect the device to the right VLAN and check IPv6:</h3>
+<p>When I connect my computer to the Wi-Fi with VLAN95 I see the right IPv6 addresses:</p>
+<p><img src="http://localhost:1313/images/ipv6_assigned.png" alt="IPv6 Addresses assigned"></p>
+<p>An external check (humble brag: it even says I&rsquo;m an ISP now):</p>
+<p><img src="http://localhost:1313/images/ipv6_external_check.png" alt="IPv6 Address External Check"></p>
+<h4 id="why-two-ipv6s">Why two IPv6s?</h4>
+<p>SLAAC typically assigns two IPv6 addresses for privacy and functionality reasons:</p>
+<p>Stable Address:</p>
+<ul>
+<li>Based on the network prefix and the device&rsquo;s MAC address (or a stable token).</li>
+<li>Used for incoming connections and when a consistent address is needed.</li>
+<li>Remains constant as long as the device is on the same network.</li>
+</ul>
+<p>Temporary Address:</p>
+<ul>
+<li>Generated randomly and changes periodically (usually daily).</li>
+<li>Used for outgoing connections to enhance privacy.</li>
+<li>Makes it harder to track a device&rsquo;s online activities over time.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Congratulations, you have your own ASN, IPv6 /44 block, active BGP session, Wireguard tunnel, and VLANs with assigned IPv6.
+Wow, you did a lot!</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://quantum5.ca/category/bgp/">Quantum Blog</a></li>
+<li><a href="https://discord.gg/ipv6">IPv6 networking discord</a></li>
+</ul>
+
+  </div>
+
+  <div id=links>
+    
+      <a href="http://localhost:1313/posts/2024-07-14-openbsd-7-5-router-with-vlans/">&laquo;&nbsp;OpenBSD 7.5 router with VLANs</a>
+    
+    
+  </div>
+</section>
+
+<div class="footer-link">
+    <a href="https://plausible.io/" target="_blank" style="font-size: 50%;">Web Analytics by Plausable - No cookies and fully compliant with GDPR, CCPA and PECR.</a>
+</div>
+</body>
+</html>
+
+
+
