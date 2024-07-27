@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jan Ferme&#39;s blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Jan Ferme&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenBSD 7.5 router with VLANs</title>
+      <link>http://localhost:1313/posts/2024-07-14-openbsd-7-5-router-with-vlans/</link>
+      <pubDate>Sun, 14 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2024-07-14-openbsd-7-5-router-with-vlans/</guid>
+      <description>I run pfSense on my router but the company behind it has started being very anti-community and almost stopped supporting their CE version. So I faced a dilemma. Migrate to OpnSense, VyOS, or something else? I heard many good things about OpenBSD so I thought to myself &amp;ldquo;Why not&amp;rdquo;? I especially like OpenBSD&amp;rsquo;s commitment to high security standards and that&amp;rsquo;s exactly what&amp;rsquo;s needed for a router and a firewall that protects your home network.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Thu, 27 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>QA Engineer, Homelaber, Gamer (Steam Deck, Switch, PS4) Hobby Repair technician, &amp;hellip; Contact me jan.ferme@protonmail.com</description>
+    </item>
+    <item>
+      <title>Beginning of a homelab</title>
+      <link>http://localhost:1313/posts/2020-12-31-beginning-of-a-homelab/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2020-12-31-beginning-of-a-homelab/</guid>
+      <description>It all started when my friend E. introduced me to the subreddit Homelab. Coincidentally this was on the 1st of April when we&amp;rsquo;re quite hopeful that the whole 2020 situation will go away soon. I started reading all the subreddit&amp;rsquo;s posts and was hooked.&#xA;The main reason to build a homelab was to replace my weak Synology 216play and to extend my storage, my computing power, and learn more about hypervisors, container systems, etc.</description>
+    </item>
+    <item>
+      <title>Why it is so important to back up your data</title>
+      <link>http://localhost:1313/posts/2019-1-1-why-it-is-so-important-to-back-up-your-data/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2019-1-1-why-it-is-so-important-to-back-up-your-data/</guid>
+      <description>During the four years I worked as a repair technician for iPhones and MacBooks, I heard lots of apologies and stories from people who brought their completely destroyed iPhones for repair on how they accidentally damaged the device.&#xA;Initially, I thought they were apologizing to me but I later realized that they were not apologizing to me but to themselves. About 90% of clients I asked about backing up their iPhone indicated that they never backed up their device in recent months.</description>
+    </item>
+    <item>
+      <title>Welcome to my new blog</title>
+      <link>http://localhost:1313/posts/2018-9-6-welcome-to-my-new-blog/</link>
+      <pubDate>Thu, 06 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2018-9-6-welcome-to-my-new-blog/</guid>
+      <description>It&amp;rsquo;s been five years since I wrote something with more than 140 characters. Looking back on things I actually missed it. There was a time where everything was too much and I didn&amp;rsquo;t want to write anything. That time has passed.&#xA;What will I write here? Mostly my thoughts and probably more tutorials for different devices that I own. In the upcoming weeks expect:&#xA;Importance of backups Xpenology guide: How to setup it on DSM 6.</description>
+    </item>
+  </channel>
+</rss>

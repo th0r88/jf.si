@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="">
+
+    
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
+    
+
+    <title>
+      
+      
+         Beginning of a homelab 
+      
+    </title>
+    <link rel="canonical" href="http://localhost:1313/posts/2020-12-31-beginning-of-a-homelab/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-justify { float: left; }
+  .right-justify { float:right; }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, .date {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content .date {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
+  #links :nth-child(2) {
+    margin-left:0.5em;;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    *, #nav h1 a {
+      color: #FDFDFD;
+    }
+
+    body {
+      background: #121212;
+    }
+
+    pre, code {
+      background-color: #262626;
+    }
+
+    #sub-header, .date {
+      color: #BABABA;
+    }
+
+    hr {
+      background: #EBEBEB;
+    }
+  }
+</style>
+
+
+    </head>
+
+  <body>
+    <section id=nav>
+      <h1><a class="h-card" href="http://localhost:1313/">Jan Ferme&#39;s blog</a></h1>
+      <ul>
+        
+          <li><a href="http://localhost:1313/">Home</a></li>
+        
+          <li><a href="http://localhost:1313/about/">About</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Beginning of a homelab </h1>
+
+  
+    <div id=sub-header>
+      December 2020 · 6 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <p>It all started when my friend E. introduced me to the subreddit <a href="https://www.reddit.com/r/homelab/">Homelab</a>. Coincidentally this was on the 1st of April when we&rsquo;re quite hopeful that the whole 2020 situation will go away soon. I started reading all the subreddit&rsquo;s posts and was hooked.</p>
+<p>The main reason to build a homelab was to replace my weak Synology 216play and to extend my storage, my computing power, and learn more about hypervisors, container systems, etc. Did I achieve that? Let&rsquo;s find out.</p>
+<p>People who know me know that I have a history with hardware and assembling and disassembling computers. I do not have so much experience with enterprise-grade hardware and this was a great opportunity. Especially because I love setting up hardware and later software on all kinds of computers.</p>
+<h2 id="preparing-the-basement">Preparing the basement</h2>
+<p>House, where I live, had a spare room in the basement that needed some fixing up. Well, it needed a bit more fixing up that I&rsquo;m leading on especially because beforehand it was known as <em>the rat room</em>. Yeah, that&rsquo;s right rats chew through the floor and took this room for their home.</p>
+<p><img src="https://jf.si/images/2020/12/IMG_0237.jpg" alt="The Rat Room - Before"></p>
+<p>Because I started doing this during lockdown material was hard to get to but I somehow managed and start working. First I painted all the walls and fixed the humidity damage on them. Then I started working on the floor. I put some floor foam on it and then over it vinyl. It came out pretty good for an amateur.</p>
+<p><img src="https://jf.si/images/2020/12/IMG_0248.jpg" alt="After"></p>
+<h2 id="installing-ethernet-cables">Installing ethernet cables</h2>
+<p>For my ethernet cables, I chose <a href="https://en.wikipedia.org/wiki/Category_6_cable">CAT6</a> that in my opinion are the best for my case in performance vs. price. I bought the cable in a box packaged as 305 m. Before I bought the cable box I&rsquo;ve made a network diagram to calculate how much cable did I need.</p>
+<p><img src="https://jf.si/images/2020/12/network_diagram.jpg" alt="Initial Network Diagram"></p>
+<p>Then my friend M. and I started to install all the cables in the house I live in. We needed to install 5 cables from a basement and up to the first floor. Fun fact: CAT6 cables are thicker than CAT5e cables I was using earlier.</p>
+<p>The other thing you can notice is that I didn&rsquo;t install cables inside the walls but rather in the plastic canals that I had to screw into the walls. In Europe, we seldomly have drywalls and don&rsquo;t have them in 70-year-old houses. So this was the only option.</p>
+<p>A friend and I tried to install cable canals properly and in corners to cut them at 45 degrees angles. It took us almost half a day to install all the cable canals from the basement to the first floor. I calculated that we installed approximately 55 m of canals.</p>
+<h2 id="choosing-the-right-server-rack">Choosing the right server rack</h2>
+<p>Racks in Europe are expensive and of course, meant for a business that usually doesn’t look at the prices. An 18U rack would cost me about 500€ so I decided to include my father who suggested to make it from wood. And so we did. I bought the rack strips and spray can.</p>
+<p>We used a frame from my childhood bunk bed that I shared with my sister. Also, I can&rsquo;t believe we still had that in storage. We finished the rack in 2 hours with all the sawing and putting it together and I measured the distance between rack strips at exactly 48,26 cm (19&quot;). Well, that was a mistake I figured out later.</p>
+<p><img src="https://jf.si/images/2020/12/IMG_0649.jpg" alt="Server rack"></p>
+<h2 id="router-switch--servers">Router, switch &amp; servers</h2>
+<p>A lot of thought went into choosing the right equipment for my needs. Did I overdo it? Of course. Am I happy with my choice? Pretty much. The research was extensive and long. I&rsquo;ve read a lot of Reddit and forum posts.</p>
+<h3 id="router">Router</h3>
+<p>I knew I wanted to install <a href="https://www.pfsense.org/">pfsense</a> on my router because I read how powerful and stable router OS it is. And that&rsquo;s why I had to find proper hardware for it. It can generally run on any x86 processor but if you want to have a bit higher bandwidth, firewall, and VPN throughput you need to choose a bit better hardware.</p>
+<p>My router consists of:</p>
+<ul>
+<li>Motherboard: Intel DQ77MK LGA1155</li>
+<li>Processor: Intel Core i5-3570T 2,3GHz Socket 1155 (TDP: 45W)</li>
+<li>Heat sink: SilverStone SST-NT07-115X</li>
+<li>8GB DDR3 1600 MHz SDRAM</li>
+<li>SATA SSD 120 GB</li>
+<li>Housing In-Win IW-RF100 - 1U Short Depth Server Chassis - 365mm depth - with power supply</li>
+<li>Intel PCI-E X1 Gigabit Server Ethernet Interface 1000M Network Card</li>
+<li>2x Noctua NF-A4x20</li>
+</ul>
+<p><img src="https://jf.si/images/2020/12/IMG_0452.jpg" alt="Router internals - Noctua fans were added a bit later"></p>
+<p><img src="https://jf.si/images/2020/12/heimdall_router.png" alt="Heimdall - Router"></p>
+<p>I&rsquo;ll write about pfsense software in the next post.</p>
+<h3 id="switch">Switch</h3>
+<p>Because I previously owned Ubiquity Unifi APs (AC-Lite) and a PoE switch (8 PoE-60W) I decided to also buy a 24-PoE 250W Unifi switch. PoE is always great and I also got a good deal locally because Unifi equipment is as expensive as Apple&rsquo;s and its holds it price unbelievable so.</p>
+<p><img src="https://jf.si/images/2020/12/unifi_switch.png" alt="Unifi 24-PoE 250W Switch"></p>
+<h3 id="servers">Servers</h3>
+<h4 id="supermicro-cse-826-x9dri-ln4f">SuperMicro CSE-826 X9DRi-LN4F+</h4>
+<p>I found out that SuperMicro offers a lot of bang for the buck so I decided to invest in a server made by them. My friend E. suggested <a href="https://www.bargainhardware.co.uk/">Bargain Hardware</a> from the UK for a purchase of an used server and I must say that it was a really pleasant experience. Sure price is a bit higher than eBay but I also got 1 year warranty.</p>
+<p>Specifications:</p>
+<ul>
+<li>Chassis: 1 x SuperMicro CSE-826 X9DRi-LN4F+ Rev1.20 2U 12 LFF-HS</li>
+<li>Processor(s): 2 x Intel Xeon E5-2630L V2 2.40Ghz Hexa (6) Core CPU*</li>
+<li>Heatsink(s): 2 x Supermicro (SNK-P0047P) X9DRi-LN4F+ 1U LGA2011 Heatsink</li>
+<li>Memory (RAM): 8 x 16GB - DDR3 1600MHz (PC3-12800R, 2Rx4) £180.00</li>
+<li>Memory Blanks 16 x Dell DDR3 RAM Blank £8.00</li>
+<li>RAID: HBA 9205-8i in IT mode*</li>
+<li>Hard Drive Caddy(s) 12 x Supermicro CSE-826 LFF Hot-Swap Caddy</li>
+<li>Hard Drives: 6 x 4TB 3.5&quot; HGST SAS 6Gbps*</li>
+<li>Power Supply(s): 1 x SuperMicro (PWS-920P-SQ) CSE-826, CSE-847 Hot-Swap PSU 920W</li>
+</ul>
+<p><img src="https://jf.si/images/2020/12/yggdrasil_sm_cse826.png" alt="Yggdrasil - FreeNAS server"></p>
+<p>This server serves (pun intended) as my NAS. It runs <a href="https://www.freenas.org/">FreeNAS</a> and I&rsquo;ll talk about it later. Is it overkill? Damn, right it is. Am I proud that I have it? Very much so.</p>
+<p>*These components were replaced or added by me later.</p>
+<h4 id="dell-r320">Dell R320</h4>
+<p>The second server is meant for a playground. On it I run <a href="https://www.proxmox.com/en/">Proxmox</a> and spin up and down VMs as much as I want. I found it on eBay from a company that went broke so it was a pretty sweet deal.</p>
+<p>Specifications:</p>
+<ul>
+<li>Processor: 1x Intel Xeon E5-2430L v2 2.40Ghz Hexa (6) Core CPU*</li>
+<li>Memory (RAM): 64 GB DDR3 1600 Mhz</li>
+<li>Hard Drives: 1x 120GB SSD, 1x 240GB SSD*</li>
+<li>Power Supplies: 2x Dell 350W</li>
+</ul>
+<p><img src="https://jf.si/images/2020/12/loki_dell_r320.png" alt="Loki - Dell R320"></p>
+<p>*These components were replaced or added by me later.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I must say it was a wild road of research and extreme patience because everything that I ordered took so much longer to come because of 2020. My homelab project started in April and was starting operating at the end of July.</p>
+<p>But remember homelab is never done. Since July I have made quite a few additions and modifications that I&rsquo;ll share in the next blog posts. For all your questions or comments you can message me <a href="https://twitter.com/th0r">@th0r</a> or write an email that you find <a href="http://localhost:1313/about/">here</a>.</p>
+
+  </div>
+
+  <div id=links>
+    
+      <a href="http://localhost:1313/posts/2019-1-1-why-it-is-so-important-to-back-up-your-data/">&laquo;&nbsp;Why it is so important to back up your data</a>
+    
+    
+      <a href="http://localhost:1313/posts/2024-07-14-openbsd-7-5-router-with-vlans/">OpenBSD 7.5 router with VLANs&nbsp;&raquo;</a>
+    
+  </div>
+</section>
+
+
+</body>
+</html>
+
+
+
