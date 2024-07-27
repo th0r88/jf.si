@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="">
+
+    
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
+    
+
+    <title>
+      
+      
+         OpenBSD 7.5 router with VLANs 
+      
+    </title>
+    <link rel="canonical" href="http://localhost:1313/posts/2024-07-14-openbsd-7-5-router-with-vlans/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-justify { float: left; }
+  .right-justify { float:right; }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, .date {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content .date {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
+  #links :nth-child(2) {
+    margin-left:0.5em;;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    *, #nav h1 a {
+      color: #FDFDFD;
+    }
+
+    body {
+      background: #121212;
+    }
+
+    pre, code {
+      background-color: #262626;
+    }
+
+    #sub-header, .date {
+      color: #BABABA;
+    }
+
+    hr {
+      background: #EBEBEB;
+    }
+  }
+</style>
+
+
+    </head>
+
+  <body>
+    <section id=nav>
+      <h1><a class="h-card" href="http://localhost:1313/">Jan Ferme&#39;s blog</a></h1>
+      <ul>
+        
+          <li><a href="http://localhost:1313/">Home</a></li>
+        
+          <li><a href="http://localhost:1313/about/">About</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> OpenBSD 7.5 router with VLANs </h1>
+
+  
+    <div id=sub-header>
+      July 2024 · 6 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <p>I run pfSense on my router but the company behind it has started being very anti-community and almost stopped supporting their CE  version. So I faced a dilemma. Migrate to OpnSense, VyOS, or something  else? I heard many good things about OpenBSD so I thought to myself  &ldquo;Why not&rdquo;? I especially like OpenBSD&rsquo;s commitment to high security standards and that&rsquo;s exactly what&rsquo;s needed for a router and a firewall that protects your home network.</p>
+<p><img src="http://localhost:1313/images/neofetch.png" alt="OpenBSD Router - Neofetch output" title="OpenBSD Router - Neofetch output"></p>
+<p><em>This is my first configuration for an OpenBSD-based router. Mistakes are expected. You&rsquo;re welcome to open issues or PRs to help add features or additional configurations. This guide will be quarterly updated or when I add something useful to it.</em></p>
+<h2 id="hardware-used">Hardware used</h2>
+<p><a href="https://www.openbsd.org/">OpenBSD</a> supports a lot of old hardware so pick something. I chose a Supermicro server with the following specifications:</p>
+<ul>
+<li>Motherboard: <a href="https://www.supermicro.com/en/products/motherboard/x11ssh-ln4f">Supermicro X11SSH-LN4F</a></li>
+<li>Processor: Intel i3-7100 @ 3.90 Ghz</li>
+<li>RAM: DDR4 8 GB ECC</li>
+<li>SSD: 128 GB NvME</li>
+</ul>
+<h2 id="my-network">My network</h2>
+<h3 id="i-segregate-my-network-with-the-following-vlans">I segregate my network with the following VLANs</h3>
+<ul>
+<li>LAN - only network hardware devices</li>
+<li>VLAN 10 - admin management devices</li>
+<li>VLAN 20 - servers</li>
+<li>VLAN 30 - desktop PCs</li>
+<li>VLAN 40 - trusted Wi-Fi devices</li>
+<li>VLAN 41 - guest Wi-Fi devices</li>
+<li>VLAN 42 - IoT wired and Wi-Fi devices</li>
+<li>VLAN 50 - NVR and cameras</li>
+<li>VLAN 60 - testing VLAN</li>
+<li>VLAN 70 - Mullvad VPN</li>
+</ul>
+<h3 id="subnets-for-dhcp-server">Subnets for DHCP server:</h3>
+<ul>
+<li>LAN subnet is 10.0.0.0/24</li>
+<li>VLAN 10 subnet is 10.10.0.0/24, range 10.10.0.20 - 10.10.0.254</li>
+<li>VLAN 20 subnet is 10.20.0.0/24, range 10.20.0.20 - 10.20.0.254</li>
+<li>VLAN 30 subnet is 10.30.0.0/24, range 10.30.0.20 - 10.30.0.254</li>
+<li>VLAN 40 subnet is 10.40.0.0/24, range 10.40.0.20 - 10.40.0.254</li>
+<li>VLAN 41 subnet is 10.40.1.0/24, range 10.40.1.20 - 10.40.1.254</li>
+<li>VLAN 42 subnet is 10.40.2.0/24, range 10.40.2.20 - 10.40.2.254</li>
+<li>VLAN 50 subnet is 10.50.0.0/24, range 10.50.0.20 - 10.50.0.254</li>
+<li>VLAN 60 subnet is 10.60.0.0/24, range 10.60.0.20 - 10.60.0.254</li>
+<li>VLAN 70 subnet is 10.70.0.0/24, range 10.70.0.20 - 10.70.0.254</li>
+</ul>
+<h3 id="firewall-rules">Firewall rules:</h3>
+<ul>
+<li>WAN has no access from outside (you can&rsquo;t ping or SSH into a router)</li>
+<li>LAN can access all VLANs and the internet</li>
+<li>VLAN 10 can access all VLANs, LAN, and internet</li>
+<li>VLAN 20 subnet is 10.20.0.0/24 and can access VLAN 42, VLAN 50, and the internet</li>
+<li>VLAN 30 can access all VLANs, LAN, and internet</li>
+<li>VLAN 40 can access all VLANs, LAN, and internet</li>
+<li>VLAN 41 can&rsquo;t access any VLANs only the internet</li>
+<li>VLAN 42 can&rsquo;t access any VLANs only the internet</li>
+<li>VLAN 50 can&rsquo;t access any VLANs or the internet</li>
+<li>VLAN 60 can&rsquo;t access any VLANs or the internet</li>
+<li>VLAN 70 can&rsquo;t access any VLANs only the internet</li>
+<li>Open port 32400 to be reached from the internet to local IP 10.20.0.11</li>
+</ul>
+<h2 id="guide">Guide</h2>
+<h3 id="1-install-openbsdhttpswwwopenbsdhandbookcominstallation-to-your-hardware-of-choice-i-suggest-skipping-installing-the-following-sets-not-needed-for-router-and-firewall">1. <a href="https://www.openbsdhandbook.com/installation/">Install OpenBSD</a> to your hardware of choice. I suggest skipping installing the following sets (not needed for router and firewall):</h3>
+<pre tabindex="0"><code>[X] bsd           [ ] comp7X.tgz    [ ] xbase7X.tgz   [ ] xserv7X.tgz
+[X] bsd.rd        [X] man7X.tgz     [ ] xshare7X.tgz
+[X] base7X.tgz    [ ] game7X.tgz    [ ] xfont7X.tgz
+</code></pre><h3 id="2--configure-network-interfaces">2.  Configure network interfaces</h3>
+<p>Check which network interfaces you have with <code>ifconfig</code>. I have <code>em0</code>, <code>em1</code>, <code>em2</code>, and <code>em3</code> but I&rsquo;ll be using only <code>em0</code> for WAN and <code>em1</code> for LAN. I&rsquo;ll be writing from the perspective of my configuration.</p>
+<h4 id="configure-your-wan-interface">Configure your WAN interface</h4>
+<p>If you have a dynamic IP from your ISP:</p>
+<p>Edit /etc/hostname.em0</p>
+<pre tabindex="0"><code>dhcp
+</code></pre><p>If you have a static IP from your ISP (IP and Gateway is provided by your ISP):</p>
+<pre tabindex="0"><code>inet 34.xx.xx.xx 38.xx.xx.xx
+up
+</code></pre><h4 id="create-vlan-interfaces">Create VLAN interfaces</h4>
+<p>Edit /etc/hostname.vlan10:</p>
+<pre tabindex="0"><code>inet 10.10.0.1 255.255.255.0
+vlan 10 vlandev em1
+</code></pre><p>Repeat this process for VLANs 20, 30, 40, 41, 42, 50, 60, and 70, adjusting the IP address accordingly.</p>
+<h3 id="3-enable-packet-forwarding">3. Enable packet forwarding</h3>
+<p>Edit /etc/sysctl.conf:</p>
+<pre tabindex="0"><code>net.inet.ip.forwarding=1
+</code></pre><h3 id="4-configure-your-dhcp-server">4. Configure your DHCP server</h3>
+<p>Edit /etc/dhcpd.conf:</p>
+<pre tabindex="0"><code># dhcpd.conf for OpenBSD router
+
+# Global parameters
+option domain-name-servers 1.1.1.1, 1.0.0.1;
+default-lease-time 600;
+max-lease-time 7200;
+
+# LAN subnet
+subnet 10.0.0.0 netmask 255.255.255.0 {
+    range 10.0.0.20 10.0.0.254;
+    option routers 10.0.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.0.0.255;
+}
+
+# VLAN 10
+subnet 10.10.0.0 netmask 255.255.255.0 {
+    range 10.10.0.20 10.10.0.254;
+    option routers 10.10.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.10.0.255;
+}
+
+# VLAN 20
+subnet 10.20.0.0 netmask 255.255.255.0 {
+    range 10.20.0.20 10.20.0.254;
+    option routers 10.20.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.20.0.255;
+}
+
+# VLAN 30
+subnet 10.30.0.0 netmask 255.255.255.0 {
+    range 10.30.0.20 10.30.0.254;
+    option routers 10.30.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.30.0.255;
+}
+
+# VLAN 40
+subnet 10.40.0.0 netmask 255.255.255.0 {
+    range 10.40.0.20 10.40.0.254;
+    option routers 10.40.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.40.0.255;
+}
+
+# VLAN 41
+subnet 10.40.1.0 netmask 255.255.255.0 {
+    range 10.40.1.20 10.40.1.254;
+    option routers 10.40.1.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.40.1.255;
+}
+
+# VLAN 42
+subnet 10.40.2.0 netmask 255.255.255.0 {
+    range 10.40.2.20 10.40.2.254;
+    option routers 10.40.2.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.40.2.255;
+}
+
+# VLAN 50
+subnet 10.50.0.0 netmask 255.255.255.0 {
+    range 10.50.0.20 10.50.0.254;
+    option routers 10.50.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.50.0.255;
+}
+
+# VLAN 60
+subnet 10.60.0.0 netmask 255.255.255.0 {
+    range 10.60.0.20 10.60.0.254;
+    option routers 10.60.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.60.0.255;
+}
+
+# VLAN 70
+subnet 10.70.0.0 netmask 255.255.255.0 {
+    range 10.70.0.20 10.70.0.254;
+    option routers 10.70.0.1;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 10.70.0.255;
+}
+
+# Static IP assignment example (uncomment and modify as needed)
+# host static-host {
+#     hardware ethernet 00:11:22:33:44:55;
+#     fixed-address 10.20.0.11;
+# }
+</code></pre><h3 id="5-configure-pf-firewall">5. Configure PF firewall</h3>
+<p>Edit /etc/pf.conf:</p>
+<pre tabindex="0"><code># Macros
+ext_if = &#34;em0&#34;
+int_if = &#34;em1&#34;
+
+# Tables
+table &lt;lan&gt; { 10.0.0.0/24 }
+table &lt;vlan10&gt; { 10.10.0.0/24 }
+table &lt;vlan20&gt; { 10.20.0.0/24 }
+table &lt;vlan30&gt; { 10.30.0.0/24 }
+table &lt;vlan40&gt; { 10.40.0.0/24 }
+table &lt;vlan41&gt; { 10.40.1.0/24 }
+table &lt;vlan42&gt; { 10.40.2.0/24 }
+table &lt;vlan50&gt; { 10.50.0.0/24 }
+table &lt;vlan60&gt; { 10.60.0.0/24 }
+table &lt;vlan70&gt; { 10.70.0.0/24 }
+
+# Options
+set skip on lo
+set block-policy return
+set loginterface $ext_if
+
+# Normalization
+match in all scrub (no-df random-id max-mss 1440)
+match out on $ext_if scrub (no-df random-id)
+
+# Anti-spoofing
+antispoof quick for { $ext_if $int_if }
+
+# NAT
+match out on $ext_if from !($ext_if) to any nat-to ($ext_if:0)
+
+# Port forwarding
+pass in on $ext_if proto tcp from any to ($ext_if) port 32400 rdr-to 10.20.0.11
+
+# Default block
+block all
+
+# Allow established connections
+pass in quick on $int_if from { &lt;lan&gt; &lt;vlan10&gt; &lt;vlan20&gt; &lt;vlan30&gt; &lt;vlan40&gt; &lt;vlan41&gt; &lt;vlan42&gt; &lt;vlan70&gt; } to any keep state
+
+# WAN rules
+pass out on $ext_if proto { tcp udp icmp } all modulate state
+# pass in on $ext_if proto tcp to ($ext_if) port ssh # Needed only when set up within the existing network
+pass in on $ext_if inet proto icmp icmp-type echoreq
+
+# LAN and VLAN outbound rules
+pass from { &lt;lan&gt; &lt;vlan10&gt; &lt;vlan20&gt; &lt;vlan30&gt; &lt;vlan40&gt; } to any keep state
+pass from { &lt;vlan41&gt; &lt;vlan42&gt; &lt;vlan70&gt; } to $ext_if keep state
+
+# ICMP rules
+pass inet proto icmp all icmp-type echoreq
+
+# Logging (optional, remove if not needed)
+pass log (all) quick on $ext_if
+</code></pre><h3 id="6-enable-and-start-services">6. Enable and start services</h3>
+<pre tabindex="0"><code># rcctl enable dhcpd
+# rcctl enable pf
+# rcctl start dhcpd
+# rcctl start pf
+</code></pre><h3 id="7-apply-network-configuration">7. Apply network configuration</h3>
+<pre tabindex="0"><code># sh /etc/netstart
+</code></pre><h2 id="future">Future</h2>
+<p>In the future, I&rsquo;ll add a VPN guide on how to connect to <a href="https://mullvad.net/en">Mullvad VPN</a> and route it through an entire VLAN. I&rsquo;ll also add a guide on how to configure Wireguard to safely connect back home when needed.</p>
+<p><em><a href="https://github.com/th0r88/openbsd-router/">Original repo will be updated on my Github</a>.</em></p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://man.openbsd.org/">OpenBSD MAN pages</a></li>
+<li><a href="https://openbsdrouterguide.net/">OpenBSD router</a></li>
+<li><a href="https://kaizo.org/2022/10/28/openbsd-wifi-vlans/">OpenBSD - veb&rsquo;s, vport&rsquo;s and vlan&rsquo;s</a></li>
+</ul>
+
+  </div>
+
+  <div id=links>
+    
+      <a href="http://localhost:1313/posts/2020-12-31-beginning-of-a-homelab/">&laquo;&nbsp;Beginning of a homelab</a>
+    
+    
+  </div>
+</section>
+
+
+</body>
+</html>
+
+
+

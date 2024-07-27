@@ -1,0 +1,26 @@
+baseURL = 'https://jf.si/'
+languageCode = 'en-us'
+title = "Jan Ferme's blog"
+canonifyurls = true
+languagecode = "en"
+theme = "black-and-light"
+
+pygmentsstyle       = "bw"
+pygmentscodefences  = true
+
+[params]
+  sitename = "Jan Ferme's blog"
+  disableWebFonts = false
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+[markup.goldmark.renderer]
+  unsafe = true
