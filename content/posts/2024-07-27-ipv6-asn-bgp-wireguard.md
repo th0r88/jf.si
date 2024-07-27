@@ -1,5 +1,5 @@
 ---
-title: IPv6 - How to start
+title: IPv6 - How to start (ASN, BGP,...)
 date: 2024-07-27
 draft: false
 ---
@@ -8,7 +8,7 @@ draft: false
 
 I've been hearing for the last 15 years that [IPv6](https://en.wikipedia.org/wiki/IPv6) is the future. Is it though? Google [tracks it](https://www.google.com/intl/en/ipv6/statistics.html) and it seems we came a long way since pre-2010 and we're currently sitting at 45%. Not bad, not great.
 
-![IPv6 Adoption](images/ipv6_adoption.png)
+![IPv6 Adoption](/images/ipv6_adoption.png)
 
 I've been running pfsense for the last 4 years and at the beginning of the year I decided it was time to finally set it up on the home network. I looked at my options and remembered that my ISP could allocate me an IPv6 range. I wrote to them and explained my case, they were happy to accommodate me and assigned me a dynamic IPv6 /56 range. 
 
@@ -58,11 +58,11 @@ Why can't I use a /44 prefix? /48 is typically considered the largest subnet (or
 
 Now I have to go to [My Ripe](https://my.ripe.net) add a `route6` object declare my intention to route this prefix and provide a mechanism for others to verify that I'm the authorized holder of this address space.
 
-![route6](images/route6.png)
+![route6](/images/route6.png)
 
 The next step is to go to your LIR website (I chose Scaleblade and they support this) to add an ROA (Route Origin Authorization) which is a cryptographically signed object that states which Autonomous System (AS) is authorized to originate a particular IP address prefix or range.
 
-![ROA](images/roa.png)
+![ROA](/images/roa.png)
 
 ROAs are a key component of RPKI (Resource Public Key Infrastructure), which is designed to improve the security of the Internet's routing infrastructure, particularly BGP (Border Gateway Protocol). ROA adds an additional layer of security to your routing announcements, complementing the route6 object you've already created in the RIPE database.
 
@@ -87,7 +87,7 @@ In the end, I chose BuyVM/Frantech and I'll focus on how to configure the BGP se
 4. On Stallion go to Your server -> Networking -> IPv6 and assign your server an IPv6 (confirm on a server that your new IPv6 is resolving otherwise add it manually)
 5. Then go to Your server -> Networking -> BGP -> Configure Session and select your server's IPv4, IPv6, Connection mode, and BGP Table View (see my screenshot) and save:
 
-![BGP Session](images/bgp_session.png)
+![BGP Session](/images/bgp_session.png)
 
 ### Bird
 
@@ -183,7 +183,7 @@ To make this permanent, add `net.ipv6.conf.all.forwarding=1` to `/etc/sysctl.con
 
 **It should show "Established":**
 
-![Bird Status](images/bird_status.png)
+![Bird Status](/images/bird_status.png)
 
 ### Wireguard setup
 
@@ -300,7 +300,7 @@ Great our Wireguard server is set up but how do we get our IPv6 prefix home? By 
 - Set Listen Port (e.g., 51821)
 - Set Tunnel Address: 2a12:your:range:1040:ffff::2/64 (copy from wg0.conf on VPS or peer configuration)
 
-![Add Wireguard Tunnel](images/wireguard_tunnel.png)
+![Add Wireguard Tunnel](/images/wireguard_tunnel.png)
 
 ### Create Wireguard interface:
 
@@ -326,7 +326,7 @@ Great our Wireguard server is set up but how do we get our IPv6 prefix home? By 
     - Allowed IPs > 2a12:your:range::/48 *(Enter the whole range if you want segreggate it further)*
     - Allowed IPs > ::/0
 
-![Add Wireguard Peer](images/wireguard_peers.png)
+![Add Wireguard Peer](/images/wireguard_peers.png)
 
 ### Update peer configuration on VPS:
 
@@ -344,7 +344,7 @@ PersistentKeepalive = 25
 
 A green handshake means it's successfully connected:
 
-![Wireguard Status](images/wireguard_status.png)
+![Wireguard Status](/images/wireguard_status.png)
 
 ### Configure routing:
 
@@ -358,7 +358,7 @@ First, we add a gateway:
     - Monitor IP > 2606:4700:4700::1001
     - Description > WG_VPS
 
-![Gateways](images/gateway.png)
+![Gateways](/images/gateway.png)
 
 Second, we add 2 static routes:
 
@@ -370,7 +370,7 @@ Second, we add 2 static routes:
     - Destination network > 8000::/1
     - Gateway > WG_VPS (2a12:your:range:1040:ffff::2)
 
-![Static Routes](images/static_routes.png)
+![Static Routes](/images/static_routes.png)
 
 ## Configuring static IPv6
 
@@ -410,7 +410,7 @@ Let's first configure a static IPv6 for servers, network devices, or any device 
 - Firewall > Rules > WireGuard
 - Add a rule to allow traffic from the WireGuard interface
 
-![Firewall Rule](images/firewall_rule.png)
+![Firewall Rule](/images/firewall_rule.png)
 
 *Adjust Firewall rules as needed for your network.*
 
@@ -460,7 +460,7 @@ However, it's worth noting that SLAAC also has some potential drawbacks, such as
 - Firewall > Rules > WireGuard
 - Add a rule to allow traffic from the WireGuard interface
 
-![Firewall Rule](images/firewall_rule.png)
+![Firewall Rule](/images/firewall_rule.png)
 
 *Adjust Firewall rules as needed for your network.*
 
@@ -468,11 +468,11 @@ However, it's worth noting that SLAAC also has some potential drawbacks, such as
 
 When I connect my computer to the Wi-Fi with VLAN95 I see the right IPv6 addresses:
 
-![IPv6 Addresses assigned](images/ipv6_assigned.png)
+![IPv6 Addresses assigned](/images/ipv6_assigned.png)
 
 An external check (humble brag: it even says I'm an ISP now):
 
-![IPv6 Address External Check](images/ipv6_external_check.png)
+![IPv6 Address External Check](/images/ipv6_external_check.png)
 
 #### Why two IPv6s?
 
