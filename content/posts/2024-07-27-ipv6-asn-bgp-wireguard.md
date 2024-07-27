@@ -4,8 +4,6 @@ date: 2024-07-27
 draft: false
 ---
 
-# IPv6 - How to start with ASN registration, get IPv6 allocation, BGP session, Wireguard setup, and tunnel on Pfsense,...
-
 I've been hearing for the last 15 years that [IPv6](https://en.wikipedia.org/wiki/IPv6) is the future. Is it though? Google [tracks it](https://www.google.com/intl/en/ipv6/statistics.html) and it seems we came a long way since pre-2010 and we're currently sitting at 45%. Not bad, not great.
 
 ![IPv6 Adoption](/images/ipv6_adoption.png)
