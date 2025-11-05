@@ -1,5 +1,5 @@
 ---
-title: From spinning chip on /24 to rolling doggo on /48
+title: From a spinning chip on /24 to a rolling doggo on /48
 date: 2025-11-05
 draft: false
 ---
