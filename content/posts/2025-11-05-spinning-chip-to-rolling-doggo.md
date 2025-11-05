@@ -14,22 +14,22 @@ This is the doggo used:
 
 ![Spinning doggo](https://media.tenor.com/OqCFkWUCqScAAAAi/dog.gif)
 
-A few funny examples:
+A few funny examples (unfortunately Markdown is unable to handle IPv6 link so you'll need to copy them):
 
-- [2a0a:6044:bf4c:c0de::cafe]([http://[2a0a:6044:bf4c:c0de::cafe])
-- [2a0a:6044:bf4c:feed::face]([http://[2a0a:6044:bf4c:feed::face])
-- [2a0a:6044:bf4c:ba5e::ba11]([http://[2a0a:6044:bf4c:ba5e::ba11])
-- [2a0a:6044:bf4c:ace::bead]([http://[2a0a:6044:bf4c:ace::bead])
-- [2a0a:6044:bf4c:fab::deed]([http://[2a0a:6044:bf4c:fab::deed])
+- http://[2a0a:6044:bf4c:c0de::cafe]
+- http://[2a0a:6044:bf4c:feed::face]
+- http://[2a0a:6044:bf4c:ba5e::ba11]
+- http://[2a0a:6044:bf4c:ace::bead]
+- http://[2a0a:6044:bf4c:fab::deed]
 
 ![Website](/images/spinning-doggo-website.png)
 
 Or from the toxic masculinity list:
 
-- [2a0a:6044:bf4c::cafe:babe]([http://[2a0a:6044:bf4c::cafe:babe])
-- [2a0a:6044:bf4c::dead:beef]([http://[2a0a:6044:bf4c::dead:beef])
-- [2a0a:6044:bf4c::bad:c0de]([http://[2a0a:6044:bf4c::bad:c0de])
-- [2a0a:6044:bf4c::b00b:1e55]([http://[2a0a:6044:bf4c::b00b:1e55])
-- [2a0a:6044:bf4c:fab:0:cab:ace:f001]([http://[2a0a:6044:bf4c:fab:0:cab:ace:f001])
+- http://[2a0a:6044:bf4c::cafe:babe]
+- http://[2a0a:6044:bf4c::dead:beef]
+- http://[2a0a:6044:bf4c::bad:c0de]
+- http://[2a0a:6044:bf4c::b00b:1e55]
+- http://[2a0a:6044:bf4c:fab:0:cab:ace:f001]
 
 Yeah, most of these IPv6 URLs can be quite childish, sorry about that. 
