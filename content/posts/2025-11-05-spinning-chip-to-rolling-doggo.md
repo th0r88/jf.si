@@ -22,7 +22,7 @@ A few funny examples:
 - [http://[2a0a:6044:bf4c:ace::bead]](http://[2a0a:6044:bf4c:ace::bead])
 - [http://[2a0a:6044:bf4c:fab::deed]](http://[2a0a:6044:bf4c:fab::deed])
 
-![Website](/public/images/spinning-doggo-website.png)
+![Website](/images/spinning-doggo-website.png)
 
 Or from the toxic masculinity list:
 
